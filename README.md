@@ -15,6 +15,9 @@ The `StakeAcrossVaultProtocol` is an extension of both the `CrossChainReceiver` 
 
 ### Workflow
 
+![StakesAcross-CCIP-Workflow](https://github.com/Stake-Across/ccip-staking-protocol/assets/330947/c771de4a-e3e0-4573-bc0d-a0beb990823d)
+
+
 1. **Token Deposit**: A DeFi user deposits tokens into the `StakeAcrossSender` contract on the source chain.
 2. **Cross-Chain Transfer**: The user then employs [Chainlink CCIP](https://docs.chain.link/ccip) to transfer these tokens, along with accompanying message data, to the `StakeAcrossVaultProtocol` on the destination chain.
 3. **Share Minting and Transfer**: The `StakeAcrossVaultProtocol` mints shares equivalent to the deposited token value and transfers these shares to the user's account on the destination chain.
