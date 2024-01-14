@@ -13,9 +13,13 @@ const npmCommand = process.env.npm_lifecycle_event;
 const isTestEnvironment = npmCommand == "test" || npmCommand == "test:unit";
 
 // Set EVM private key (required)
-const PRIVATE_KEY = process.env.PRIVATE_KEY;
+const PRIVATE_KEY1 = process.env.PRIVATE_KEY1;
+const PRIVATE_KEY2 = process.env.PRIVATE_KEY2;
 
-if (!isTestEnvironment && !PRIVATE_KEY) {
+// validate private keys are set and create array of accounts with both keys
+
+
+if (!isTestEnvironment && !PRIVATE_KEY1) {
   throw Error(
     "Set the PRIVATE_KEY environment variable with your EVM wallet private key"
   );
@@ -28,7 +32,7 @@ const networks = {
     // router: "0xd0daae2231e9cb96b94c8512223533293c3693bf",
     router: "0x0bf3de8c5d3e8a2b34d2beeb17abfcebaf363a59",
     chainSelector: "16015286601757825753",
-    accounts: PRIVATE_KEY !== undefined ? [PRIVATE_KEY] : [],
+    accounts: PRIVATE_KEY1 !== undefined ? [PRIVATE_KEY1, PRIVATE_KEY2] : [],
     verifyApiKey: "THIS HAS NOT BEEN SET",
     chainId: 11155111,
     confirmations: DEFAULT_VERIFICATION_BLOCK_CONFIRMATIONS,
@@ -42,7 +46,7 @@ const networks = {
     router: "0xf694e193200268f9a4868e4aa017a0118c9a8177",
     chainSelector: "14767482510784806043",
     gasPrice: undefined,
-    accounts: PRIVATE_KEY !== undefined ? [PRIVATE_KEY] : [],
+    accounts: PRIVATE_KEY1 !== undefined ? [PRIVATE_KEY1, PRIVATE_KEY2] : [],
     verifyApiKey: "THIS HAS NOT BEEN SET",
     chainId: 43113,
     confirmations: 2 * DEFAULT_VERIFICATION_BLOCK_CONFIRMATIONS,

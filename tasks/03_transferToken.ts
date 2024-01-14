@@ -34,6 +34,8 @@ task(
       throw Error("This task is intended to be executed on the Fuji network.");
     }
 
+    const GAS_LIMIT = 600000;
+
     let bnmTokenAddress = networks[networkName].bnmToken;
     if (!bnmTokenAddress) {
       throw Error("Missing BnM Token Address from networks.js file");
@@ -51,24 +53,53 @@ task(
       senderFactory.attach(sender)
     );
 
+    // For testing porpuses the contract was previously funded directly from the CCIP-BnM token contract
+    // In production, the contract will be funded from the depositor's wallet at the time of transfer.
+
+    const signers = await hre.ethers.getSigners();
+    const anotherUserAccount = signers[1];
+
     try {
+      // send tokens from deployer
       const sendTokensTx = await senderContract.sendMessage(
         destChainSelector,
         protocol,
         bnmTokenAddress,
         amount,
-        1000000,
+        GAS_LIMIT,
         {
-          gasLimit: 1000000,
+          gasLimit: GAS_LIMIT,
         }
       );
 
       await sendTokensTx.wait(2);
 
       console.log("\nTx hash is ", sendTokensTx.hash);
-      console.log(`\nPlease visit the CCIP Explorer at 'https://ccip.chain.link' 
-      and paste in the Tx Hash '${sendTokensTx.hash}' to view the status of your CCIP tx.
-    Be sure to make a note of your Message Id for use in the next steps.`);
+      console.log(`\nPlease visit the CCIP Explorer at 'https://ccip.chain.link'
+        and paste in the Tx Hash '${sendTokensTx.hash}' to view the status of your CCIP tx.
+        Be sure to make a note of your Message Id for use in the next steps.`);
+
+      // send tokens from another user for  the half of the amount
+
+      // convert amount to wei
+      const fullAmount = hre.ethers.parseUnits(amount, "wei");
+      // divide fullAmount by 2
+      const halfAmount = fullAmount / 2n;
+
+      const sendTokensTx2 = await senderContract
+        .connect(anotherUserAccount)
+        .sendMessage(
+          destChainSelector,
+          protocol,
+          bnmTokenAddress,
+          halfAmount,
+          GAS_LIMIT,
+          {
+            gasLimit: GAS_LIMIT,
+          }
+        );
+      await sendTokensTx2.wait(2);
+      console.log("\nTx2 hash is ", sendTokensTx2.hash);
     } catch (error) {
       console.log(error);
     }

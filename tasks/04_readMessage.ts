@@ -72,20 +72,6 @@ task("read-message", "reads CCIP message on dest contract")
 
     // Checking state on Protocol.sol
     if (contract === "Protocol") {
-      // ts-ignore accesor to a public property
-      // tslint:disable-next-line: no-string-literal
-      const deposit = await ccipContract.deposits(
-        depositorEOA,
-        transferredToken
-      );
-      
-      // const borrowedToken = await ccipContract.usdcToken()
-      // const borrowings = await ccipContract.borrowings(depositorEOA, borrowedToken)
-      console.log(`Deposit recorded on Protocol: 
-        Depositor: ${depositorEOA}, 
-        Token: ${transferredToken}, 
-        Deposited Amount: ${deposit}
-        `);
       // read vault properties
       const vaultTotalAssets = await (
         ccipContract as StakeAcrossVaultProtocol

@@ -32,7 +32,7 @@ task("setup-protocol", "deploy StakeAcrossVaultProtocol.sol").setAction(
     const LINK_AMOUNT = "1";
     const ETH_AMOUNT = "0.5";
     const VAULT_ASSET = bnmToken;
-    const VAULT_BASIS_POINTS = "100";
+    const VAULT_APPROVED_ASSETS = "5";
 
     console.log("\n__Compiling Contracts__");
     await hre.run("compile");
@@ -48,7 +48,6 @@ task("setup-protocol", "deploy StakeAcrossVaultProtocol.sol").setAction(
       ROUTER,
       LINK,
       VAULT_ASSET,
-      VAULT_BASIS_POINTS,
     ]);
 
     await protocolContract.waitForDeployment();
@@ -82,7 +81,7 @@ task("setup-protocol", "deploy StakeAcrossVaultProtocol.sol").setAction(
     console.log(`\nFunded ${protocolContract.target} with ${linkBalance} LINK`);
 
     // Fund with ETH
-    console.log(`\nFunding ${protocolContract.target} with 0.5 ETH `);
+    console.log(`\nFunding ${protocolContract.target} with ${ETH_AMOUNT} ETH `);
     const ethTx = await deployer.sendTransaction({
       to: protocolContract.target,
       value: hre.ethers.parseEther(ETH_AMOUNT),
@@ -96,6 +95,36 @@ task("setup-protocol", "deploy StakeAcrossVaultProtocol.sol").setAction(
       `\nFunded ${protocolContract.target} with ${hre.ethers.formatEther(
         ethBalance.toString()
       )} ETH`
+    );
+
+    // aprove protocol contract to spend VAULT_ASSET from deployer
+    // this is required for the protocol contract to transfer
+    // the asset and simulate interest gains from a strategy
+    console.log(
+      `\nApproving ${protocolContract.target} to spend ${VAULT_ASSET} 
+      from ${deployer.address}`
+    );
+    const bnmTokenContract = await hre.ethers.getContractAt(
+      "ERC20",
+      VAULT_ASSET
+    );
+    const approveTx = await bnmTokenContract.approve(
+      protocolContract.target,
+      hre.ethers.parseEther(VAULT_APPROVED_ASSETS)
+    );
+    await approveTx.wait(1);
+
+    // log approval
+    const allowance = await bnmTokenContract.allowance(
+      deployer.address,
+      protocolContract.target
+    );
+    console.log(
+      `\n${
+        protocolContract.target
+      } is approved to spend ${hre.ethers.formatEther(
+        allowance.toString()
+      )} ${VAULT_ASSET} from ${deployer.address}`
     );
 
     // read vault properties

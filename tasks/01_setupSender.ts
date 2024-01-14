@@ -27,7 +27,7 @@ task("setup-sender", "deploy Sender.sol").setAction(async function (
   const ROUTER = networkConfig.router;
   const LINK = networkConfig.linkToken;
 
-  const TOKEN_TRANSFER_AMOUNT = "0.55";
+  const ASSET_TOKEN_AMOUNT = "1.5"; // 1.5 CCIP-BnM
   const LINK_AMOUNT = "5";
 
   console.log("\n__Compiling Contracts__");
@@ -44,14 +44,16 @@ task("setup-sender", "deploy Sender.sol").setAction(async function (
   );
 
   // Fund with CCIP BnM Token
+  // for testing porpuses the contract is funded directly from the CCIP-BnM token contract
+  // in production the contract will be funded from the depositors wallet at the time of the trasnfer
   console.log(
-    `\nFunding ${senderContract.target} with ${TOKEN_TRANSFER_AMOUNT} CCIP-BnM `
+    `\nFunding ${senderContract.target} with ${ASSET_TOKEN_AMOUNT} CCIP-BnM `
   );
   const bnmTokenContract = await hre.ethers.getContractAt("ERC20", bnmToken);
 
   const bnmTokenTx = await bnmTokenContract.transfer(
     senderContract.target,
-    hre.ethers.parseUnits(TOKEN_TRANSFER_AMOUNT)
+    hre.ethers.parseUnits(ASSET_TOKEN_AMOUNT)
   );
   await bnmTokenTx.wait(1);
 
