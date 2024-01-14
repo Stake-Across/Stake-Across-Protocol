@@ -1,72 +1,89 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.19;
 
-import "./base/StakeAcrossProtocol.sol";
-import "./base/Vault.sol";
+import "./base/CrossChainReceiver.sol";
+import "./base/ERC4626Vault.sol";
 
 /// @title StakeAcrossVaultProtocol
-/// @notice This contract is a StakeAcrossProtocol and a Vault
-/// @dev This contract inherits from StakeAcrossProtocol and Vault
+/// @notice This contract is used to stake tokens on one chain and receive them on another chain.
+/// @dev This contract inherits from CrossChainReceiver and ERC4626Vault
 
-contract StakeAcrossVaultProtocol is StakeAcrossProtocol, Vault {
-  /// @dev Initializes the StakeAcrossVaultProtocol contract
-  /// @param _router  the  CCIP router address
-  /// @param _link the address of the LINK token
-  /// @param _asset  the token that is deposited into the vault
-  /// @param _basisPoints  the fee that is taken on deposit
-  constructor(
-    address _router,
-    address _link,
-    IERC20 _asset,
-    uint256 _basisPoints
-  ) StakeAcrossProtocol(_router, _link) Vault(_asset, _basisPoints) {
-    // Additional initializations if necessary
-  }
+contract StakeAcrossVaultProtocol is CrossChainReceiver, ERC4626Vault {
+    /// @dev Initializes the StakeAcrossVaultProtocol contract
+    /// @param _router  the  CCIP router address
+    /// @param _link the address of the LINK token
+    /// @param _asset  the token that is deposited into the vault
+    constructor(
+        address _router,
+        address _link,
+        IERC20 _asset
+    ) CrossChainReceiver(_router, _link) ERC4626Vault(_asset) {
+        // Additional initializations if necessary
+    }
 
-  /// @dev The function receives the message from the CCIP router and executes the deposit logic. Override _ccipReceive() from StakeAcrossProtocol
-  /// @param any2EvmMessage  the message received from the CCIP router
-  function _ccipReceive(Client.Any2EVMMessage memory any2EvmMessage) internal override {
-    // First, execute the original logic from StakeAcrossProtocol's _ccipReceive()
-    bytes32 messageId = any2EvmMessage.messageId; // fetch the messageId
-    uint64 sourceChainSelector = any2EvmMessage.sourceChainSelector; // fetch the source chain identifier (aka selector)
-    address sender = abi.decode(any2EvmMessage.sender, (address)); // abi-decoding of the sender address
-    address depositor = abi.decode(any2EvmMessage.data, (address)); // abi-decoding of the depositor's address
+    /// @dev The function receives the message from the CCIP router and executes the deposit logic.
+    /// @dev Overrides _ccipReceive() from CrossChainReceiver contract
+    /// @param any2EvmMessage  the message received from the CCIP router
+    function _ccipReceive(
+        Client.Any2EVMMessage memory any2EvmMessage
+    ) internal override {
+        address depositor = abi.decode(any2EvmMessage.data, (address)); // abi-decoding of the depositor's address
+        uint256 amount = any2EvmMessage.destTokenAmounts[0].amount;
+        // First, execute the original logic from StakeAcrossProtocol's _ccipReceive()
+        super._ccipReceive(any2EvmMessage);
+        // Then, execute the deposit logic from Vault contract (deposit(receivedAmount, receiver) function)
+        // The function calculates and sends an equivalent amount of shares based on the deposited assets
+        deposit(amount, depositor);
+    }
 
-    // Collect tokens transferred. This increases this contract's balance for that Token.
-    Client.EVMTokenAmount[] memory tokenAmounts = any2EvmMessage.destTokenAmounts;
-    address token = tokenAmounts[0].token;
-    uint256 amount = tokenAmounts[0].amount;
+    /// @dev The function calculates and returns the equivalent amount of assets based on the burned shares.
+    /// @param shares  the amount of shares to be burned
+    /// @param destinationChain  the chain where the assets will be sent
+    /// @param receiver  the address that will receive the assets
+    function ccipRedeem(
+        uint256 shares,
+        uint64 destinationChain,
+        address receiver
+    ) public {
+        // redeem shares for assets. Burn the shares
+        uint256 assets = redeem(shares, receiver, _msgSender());
+        // transfer assets back to the user in the sender chain (Fuji)
+        sendMessage(destinationChain, receiver, asset(), assets);
+    }
 
-    receivedMessages.push(messageId);
-    MessageIn memory detail = MessageIn(sourceChainSelector, sender, depositor, token, amount);
-    messageDetail[messageId] = detail;
+    /// @dev The function calculates and returns the equivalent amount of assets based on the withdrawn assets.
+    /// @param assets  the amount of assets to be withdrawn
+    /// @param destinationChain  the chain where the assets will be sent
+    /// @param receiver  the address that will receive the assets
+    function ccipWithdraw(
+        uint256 assets,
+        uint64 destinationChain,
+        address receiver
+    ) public {
+        // withdraw assets from the vault. Calculate shares to be burned
+        withdraw(assets, receiver, _msgSender());
+        // transfer assets back to the user in the sender chain (Fuji)
+        sendMessage(destinationChain, receiver, asset(), assets);
+    }
 
-    emit MessageReceived(messageId, sourceChainSelector, sender, depositor, tokenAmounts[0]);
+    // === Strategy logic Override ===
 
-    // TODO: remove saving two times the same data on protocol and vault
-    // Store depositor data.
-    deposits[depositor][token] += amount;
-
-    // Then, execute the deposit logic from Vault contract (deposit(receivedAmount, receiver) function)
-    // The function calculates and sends an equivalent amount of shares based on the deposited assets
-    deposit(amount, depositor);
-  }
-
-  /// @dev The function calculates and returns the equivalent amount of assets based on the burned shares.
-  /// @param shares  the amount of shares to be burned
-  /// @param destinationChain  the chain where the assets will be sent
-  /// @param receiver  the address that will receive the assets
-  function ccipRedeem(uint256 shares, uint64 destinationChain, address receiver) public {
-    require(shares <= maxRedeem(_msgSender()), "ERC4626: redeem more than max");
-    uint256 assets = previewRedeem(shares);
-    beforeWithdraw(assets, shares);
-
-    _burn(_msgSender(), shares);
-
-    // transfer assets back to the user in the sender chain (Fuji)
-    sendMessage(destinationChain, receiver, asset(), assets);
-
-    emit Withdraw(_msgSender(), receiver, _msgSender(), assets, shares);
-    // return assets;
-  }
+    /// @dev Simulates the profit obtained from a strategy. Adds 10% interest to deposited assets.
+    /// @param assets the amount of assets deposited
+    function _afterDeposit(uint256 assets) internal override {
+        // calculate 10% interest from assets
+        uint256 interest = (assets * 10) / 100;
+        // check allowance of this contract to transfer interest amount of _asset from owner
+        require(
+            IERC20(asset()).allowance(owner(), address(this)) >= interest,
+            "ERC4626Vault: Not enough allowance"
+        );
+        // transfer interest amout of _asset to this contract from owner
+        SafeERC20.safeTransferFrom(
+            IERC20(asset()),
+            owner(),
+            address(this),
+            interest
+        );
+    }
 }
