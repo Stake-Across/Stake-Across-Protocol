@@ -32,6 +32,7 @@ Chainlink CCIP fees are paid using LINK tokens. They can also be paid in the [ch
 
 ## Stake Across
 
+![The Coq](https://github.com/Stake-Across/ccip-staking-protocol/assets/116522187/795170bc-f7cb-48b6-88a3-190b43411d73)
 
 ### Buy and Stake $Coq Across multiple blockchains
 
