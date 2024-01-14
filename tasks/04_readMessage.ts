@@ -9,11 +9,21 @@ import {
 } from "../typechain-types";
 
 // usage example:
+// a - check Protocol
+
+// npx hardhat read-message \
+// --network sepolia \
+// --address 0x501Df3901CAdAc7822DFa18288D1189d46DEb713  \
+// --contract Protocol \
+// --message-id 0x6b8af01a2415fe824b61ee356b8159c5189baa75f265b75b7b844e21a2a05b99
+
+// b - check sender
+
 // npx hardhat read-message \
 // --network fuji \
-// --address 0x224551537eD9fE2D92a0C34004faE603209aA526  \
+// --address 0xEd982FFfCE7935f5b6B2423B4bEA11Fa1DdA60a5  \
 // --contract Sender \
-// --message-id 0x73785426db8a382cac311612a33c5125b45294f737b080432d92eec8cad8d108
+// --message-id 0x6b8af01a2415fe824b61ee356b8159c5189baa75f265b75b7b844e21a2a05b99
 
 task("read-message", "reads CCIP message on dest contract")
   .addParam("address", "address of CCIP contract to read")

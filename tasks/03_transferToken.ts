@@ -13,7 +13,7 @@ import {
 // --sender 0x2f5dA50367C19B3e7d01f28109978B9A1a9708AF \
 // --protocol 0xbe38384a67Cd54360E887468Aa109c2827486A29 \
 // --dest-chain sepolia \
-// --amount 100
+// --amount 500000000000000000
 
 task(
   "transfer-token",
