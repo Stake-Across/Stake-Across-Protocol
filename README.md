@@ -1,4 +1,6 @@
-# StakeAcross CCIP cross chain staking protocol
+# StakeAcross 
+
+CCIP cross chain staking protocol
 
 ## Use Case Description
 
@@ -27,6 +29,31 @@ The `StakeAcrossVaultProtocol` is an extension of both the `CrossChainReceiver` 
 This use case demonstrates the integration of cross-chain capabilities with yield-generating strategies in DeFi, utilizing the robustness of Chainlink's CCIP and the efficiency of the ERC4626 standard for a comprehensive DeFi solution.
 
 Chainlink CCIP fees are paid using LINK tokens. They can also be paid in the [chain's native token](https://documentation-private-git-ccip-documentation-chainlinklabs.vercel.app/ccip/architecture#ccip-billing) but in this example we pay CCIP fees in LINK.
+
+## Stake Across
+
+
+### Buy and Stake $Coq Across multiple blockchains
+
+
+#### Context
+
+The $Coq Token is available on a limited number of Decentralized Exchanges (Dexs) and Centralized Exchanges (Cexs), but this can potentially restrict new users from easily acquiring $Coq tokens. We believe that bridges serve as a common method for transferring tokens across different blockchain networks. However, using bridges carries inherent risks, as they are often vulnerable to hacking attempts, resulting in the depletion of liquidity. Constant efforts are being made to explore alternative options and establish secure methods for bridging tokens and messages between blockchain networks.
+
+#### Proposed Solution
+
+An innovative approach to enhance liquidity for $Coq across various blockchain networks involves leveraging the Cross Chain Interoperability Protocol (CCIP). With CCIP, users gain the ability to send messages, transfer tokens, and trigger actions seamlessly across different blockchains.
+
+
+#### How it works? 
+
+This protocol utilizes Chainlink's Cross Chain Interoperability Protocol (CCIP) technology, enabling users to purchase and/or stake $Coq across various blockchain networks. The CCIP burn and mint mechanism facilitate this process. By simultaneously burning the token on the source chain and minting an equivalent token on the destination chain, the protocol seamlessly transfers assets between different blockchains. The same method can be employed to transfer tokens back and forth between either chain.
+CCIP offers audited token pool contracts that manage the intricacies of burning/minting or locking/minting tokens across chains. Importantly, token sponsors retain complete control over their token pool contract while leveraging CCIP.
+The well-established reputation of Chainlink in the realm of oracles positions CCIP as a technology with high adoption potential. In contrast to various blockchain bridges, CCIP is an infrastructure designed for integration within applications. Its primary focus is not the end user, hence a user-friendly graphical interface from Chainlink is not provided.
+While CCIP technology is in its early stages and evolving daily, it currently supports only a limited number of blockchains and tokens. Testing on the supported testnets is possible.
+For $Coq to be supported by CCIP, the project team must engage with the Chainlink team, obtain approval, and provide token liquidity to the CCIP protocol.
+Our protocol enables users across multiple chains to buy, hold, stake, and secure $Coq. Stake Across allows users to buy, stake, and receive staking rewards. This initiative contributes to the growth of the Coq Inu community across the broader blockchain ecosystem, offering users the seamless ability to purchase, stake, receive rewards, and transfer $Coq across different networks.
+
 
 ## Project Setup Guide
 
