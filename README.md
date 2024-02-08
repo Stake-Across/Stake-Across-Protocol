@@ -1,6 +1,6 @@
 # Stake Across 
 
-CCIP cross chain staking protocol
+### A revolutionary staking protocol, empowered by CCIP and Chainlink technology, designed specifically for cross-chain staking to optimize yield generation across various blockchain networks.
 
 ## Use Case Description
 
