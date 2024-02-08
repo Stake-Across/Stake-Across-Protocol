@@ -1,4 +1,4 @@
-# StakeAcross 
+# Stake Across 
 
 CCIP cross chain staking protocol
 
@@ -30,7 +30,7 @@ This use case demonstrates the integration of cross-chain capabilities with yiel
 
 Chainlink CCIP fees are paid using LINK tokens. They can also be paid in the [chain's native token](https://documentation-private-git-ccip-documentation-chainlinklabs.vercel.app/ccip/architecture#ccip-billing) but in this example we pay CCIP fees in LINK.
 
-## Stake Across
+## Why Stake Across?
 
 Current Scenario:
 
