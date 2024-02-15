@@ -32,11 +32,11 @@ Chainlink CCIP fees are paid using LINK tokens. They can also be paid in the [ch
 
 ## Why Stake Across?
 
-## Unlocking the Strength of Native Tokens Across the Interchains
+# Unlocking the Strength of Native Tokens Across the Interchains
 
 In the ever-expanding landscape of blockchain ecosystems, the dispersion of native tokens like Ether (ETH) across various chains presents both opportunities and challenges. While the utilization of tokens in diverse Layer 1 (L1) and Layer 2 (L2) solutions brings benefits, it also raises concerns about network security and decentralization. Moreover, the dispersion of native tokens across chains makes it difficult for users to generate yield and secure the chains they are participating in with their native token.
 
-## Challenges Addressed:
+# Challenges Addressed:
 
 Decentralization Impact: The scattering of native tokens across multiple chains can potentially centralize staking activities, undermining the decentralization ethos of blockchain networks.
 
@@ -46,7 +46,7 @@ Data Privacy and Security: Dispersion of tokens may expose users to data privacy
 
 Yield Generation and Chain Security: With native tokens dispersed across chains, users face difficulties in generating yield and securing the chains they participate in. This poses a challenge to the stability and security of the interconnected blockchain ecosystem.
 
-## Protocol Solutions:
+# Protocol Solutions:
 
 Multi-Chain Governance Framework: Our protocol advocates for a multi-chain governance framework, actively involving stakeholders from different networks to ensure diverse and inclusive decision-making processes.
 
@@ -54,7 +54,7 @@ Enhanced Data Privacy and Security: Through a privacy-focused protocol, we prior
 
 Cross-Chain Collaboration: Our protocol facilitates innovative collaborations and value creation across different chains, maximizing opportunities for synergies and project scope expansion beyond conventional narratives.
 
-## Protocol Benefits:
+# Protocol Benefits:
 
 Participatory Staking Across Chains: With our protocol, participants can stake native tokens across various chains (and their testnets), including Ethereum, Avalanche, Optimism, Arbitrum, BNB, Base, and Polygon, using CCIP to seamlessly move liquidity across chains.
 
