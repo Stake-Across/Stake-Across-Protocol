@@ -29,8 +29,8 @@ task(
   .setAction(async (taskArguments, hre) => {
     // get network name from params
     const networkName = hre.network.name as keyof typeof networks;
-
-    if (networkName !== "fuji") {
+    // check if the networkName is fuji or sepolia
+    if (networkName !== "fuji" && networkName !== "sepolia") {
       throw Error("This task is intended to be executed on the Fuji network.");
     }
 

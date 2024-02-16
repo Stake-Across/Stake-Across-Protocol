@@ -51,12 +51,6 @@ task("read-protocol", "reads protocol contract balances")
     // read users balances
     const [deployer] = await hre.ethers.getSigners();
     const symbol = await protocolContract.symbol();
-
-    // let deployerBalance = await protocolContract.balanceOf(deployer.address);
-    // console.log(
-    //   `\nDeployer ${symbol} Balance: ${hre.ethers.formatEther(deployerBalance)}`
-    // );
-
     const userBalance = await protocolContract.balanceOf(user);
     console.log(
       `\nUser ${symbol} Balance: ${hre.ethers.formatEther(userBalance)}`

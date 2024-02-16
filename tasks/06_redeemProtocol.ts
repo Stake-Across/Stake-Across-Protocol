@@ -16,6 +16,9 @@ import {
 // --receiver 0x1487f4304C8663683BEEf72B32bc8845F5Fb8941 \
 // --amount 50
 
+// note: only redeem for user deployer
+// todo: add support for redeeming for other users
+
 task("redeem-protocol", "redeem shares from protocol contract")
   .addParam("address", "address of CCIP Protocol contract to redeem from")
   .addParam("destChain", "destination chain as specified in networks.js file")
@@ -50,7 +53,7 @@ task("redeem-protocol", "redeem shares from protocol contract")
     const assetFromProtocol = await protocolContract.asset();
     console.log(`\nAsset from Protocol: ${assetFromProtocol}`);
     console.log(`\nBnM Token Address:   ${bnmTokenAddress}`);
-    if (assetFromProtocol !== bnmTokenAddress) {
+    if (assetFromProtocol.toLowerCase() !== bnmTokenAddress.toLowerCase()) {
       throw Error(
         `Asset from Protocol '${assetFromProtocol}' does not match BnM Token Address '${bnmTokenAddress}'`
       );
@@ -71,7 +74,6 @@ task("redeem-protocol", "redeem shares from protocol contract")
     );
 
     // read user balances
-    // const [deployer] = await hre.ethers.getSigners();
     const userBalance = await protocolContract.balanceOf(receiver);
     const symbol = await protocolContract.symbol();
     console.log(

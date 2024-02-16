@@ -10,15 +10,10 @@ task("setup-protocol", "deploy StakeAcrossVaultProtocol.sol").setAction(
     // get network name from params
     const networkName = hre.network.name;
 
-    if (networkName === "hardhat") {
-      throw Error(
-        "This command cannot be used on a local development chain.  Specify a valid network."
-      );
-    }
-
-    if (networkName !== "sepolia") {
-      throw Error(
-        "This task is intended to be executed on the Sepolia network."
+    // check if the networkName is fuji or sepolia
+    if (networkName !== "fuji" && networkName !== "sepolia") {
+      throw new Error(
+        "This task is intended to be executed on the Fuji or Sepolia networks."
       );
     }
 
@@ -30,7 +25,7 @@ task("setup-protocol", "deploy StakeAcrossVaultProtocol.sol").setAction(
     const ROUTER = networks[networkName].router;
     const LINK = networks[networkName].linkToken;
     const LINK_AMOUNT = "1";
-    const ETH_AMOUNT = "0.5";
+    const ETH_AMOUNT = "0.3";  // 0.3 ETH or AVAX 
     const VAULT_ASSET = bnmToken;
     const VAULT_APPROVED_ASSETS = "5";
 

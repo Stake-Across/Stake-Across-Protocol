@@ -12,9 +12,10 @@ task("setup-sender", "deploy Sender.sol").setAction(async function (
   // get network name from params
   const networkName = hre.network.name;
 
-  if (networkName !== "fuji") {
+  // check if the networkName is fuji or sepolia
+  if (networkName !== "fuji" && networkName !== "sepolia") {
     throw new Error(
-      "This task is intended to be executed on the Fuji network."
+      "This task is intended to be executed on the Fuji or Sepolia networks."
     );
   }
 
