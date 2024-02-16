@@ -15,6 +15,8 @@ The `StakeAcrossVaultProtocol` is an extension of both the `CrossChainReceiver` 
 
 > **Note:** The **CCIP-BnM** token serves as a placeholder for any other ERC20 token that we might want to use on the mainnet in the future. To find out which tokens are currently available on various mainnet networks and how to add your own, check out this resource:  [CCIP Mainnet Tokens](https://docs.chain.link/ccip/supported-networks/v1_0_0/mainnet).
 
+> **Note:** More about the [ERC4626 Tokenized Vaults](https://luisvid.substack.com/p/introduction-erc-4626-tokenized-vaults)
+
 ### Workflow
 
 ![StakesAcross-CCIP-Workflow](https://github.com/Stake-Across/ccip-staking-protocol/assets/330947/c771de4a-e3e0-4573-bc0d-a0beb990823d)
@@ -75,6 +77,8 @@ This project leverages [Hardhat tasks](https://hardhat.org/hardhat-runner/docs/g
 2. **Install Dependencies**: Run `npm install` in your project directory to install necessary dependencies.
 
 ### Preparing the Chains
+
+> **Note:** In the following example, Fuji is used as the source chain and Sepolia as the destination, where the protocol resides, for faster CCIP performance. However, the origin and destination networks for deploying the smart contracts are interchangeable. By simply adjusting the task parameters that specify the chain, such as `--network` or `--dest-chain`, you can deploy and interact with the contract on the desired network.
 
 #### Source Chain: Fuji
 
