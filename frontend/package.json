@@ -1,6 +1,6 @@
 {
-  "name": "stake-across-protocol",
-  "homepage": "https://stakeacrossprotocol.github.io/stake-across-protocol/",
+  "name": "stake-across-protocol-gui",
+  "homepage": "https://stakeacrossprotocol.github.io/Stake-Across-Protocol/",
   "version": "0.0.1",
   "private": true,
   "scripts": {
