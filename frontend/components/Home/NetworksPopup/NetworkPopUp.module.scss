@@ -1,0 +1,65 @@
+$height: 250px;
+
+
+.NetworkPopUp {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid #39879d;
+    border-radius: 15px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+    min-height: $height;
+    padding: 5%;
+    background-color: white;
+    z-index: 1;
+
+    &_close {
+        position: fixed;
+        top: 2%;
+        right: 2%;
+
+        &_icon {
+            color: #aaa;
+            float: right;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            &:hover {
+                color: black;
+            }
+        }
+    }
+
+    &_networksList {
+        min-width: $height*1.2;
+        min-height: $height - $height*0.5;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+         
+        &_currentNetwork {
+            background-color: white;
+            border-radius: 15px;
+            width: $height*0.50;
+            min-width: 100px;
+            height: 100px;
+            //border: 1px solid lighten(#39879d, 90%);
+            box-shadow: 0px 0px 10px rgba(57, 135, 157, 0.8);
+            margin: 2%;
+            padding: 1%;  
+            cursor: pointer;     
+            &>img{
+                height: 60%;
+                width: auto;
+                cursor: pointer;
+            }
+            &>* {
+                font-size: small;           
+                text-align: center;
+                margin: 1% auto;
+            }
+        }
+
+    }
+}

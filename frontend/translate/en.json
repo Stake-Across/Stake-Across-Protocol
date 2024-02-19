@@ -1,0 +1,264 @@
+{
+  "locale": "en-en",
+  "navbar": {
+    "logo": "logo",
+    "stake": "Stake",
+    "account": "My account",
+    "ccip": "CCIP",
+    "theProject": "The Project",
+    "network": "Networks",
+    "LoginBtn": "Connect wallet",
+    "dude": "¿FAQ?",
+    "infoEmail": "mail@mail.es",
+    "steps": [
+      "Compra",
+      "Paso2"
+    ],
+    "clientArea": {
+      "clientArea": "Área clientes",
+      "insurance": "Blockchain",
+      "reward": "Obtener Recompensa"
+    },
+    "language": [
+      "es",
+      "en"
+    ]
+  },
+  "footer": {
+    "c": "© 2023, Name",
+    "terms": "Términos y condiciones",
+    "privacy": "Privacidad",
+    "cookies": "Cookies",
+    "social": {
+      "facebook": "facebook",
+      "instagram": "instagram",
+      "twitter": "twitter"
+    }
+  },
+  "home": {
+    "section1": {
+      "title": "Stake Across",
+      "subtitle": "Stake ETH without restrictions ",
+      "paragraph": "be capi"
+    },
+    "section2": {
+      "stake": "Stake",
+      "mystake": "My stake",
+      "stakeNow": "Stake"
+    },
+    "section3": {
+      "understaking": "Understaking",
+      "claimReward": "Claim reward"
+    },
+    "footer": {
+      "logo": "",
+      "email": "",
+      "address": ""
+    }
+  },
+  "popUp": {
+    "metamaskConnection": {
+      "successful": {
+        "title": "Metamask connection",
+        "detail": "",
+        "image": ""
+      },
+      "failed": {
+        "title": "Metamask connection",
+        "detail": "",
+        "image": ""
+      },
+      "existing": {
+        "title": "¡Ya te encuentras conectado!",
+        "detail": "En este momento tu billetera ya se encuentra conectada. Recuerda que puedes cambiar de red si lo deseas",
+        "image": ""
+      }
+    },
+    "balance": {
+      "successful": {
+        "title": "Metamask connection",
+        "detail": "",
+        "image": ""
+      },
+      "failed": {
+        "title": "¡No tienes suficiente saldo!",
+        "detail": "Para poder realizar esta accion, debes tener en tu billetera algo más de la cantidad solicitada",
+        "image": ""
+      }
+    },
+    "staking": {
+      "successful": {
+        "title": "Metamask connection",
+        "detail": "",
+        "image": ""
+      },
+      "failed": {
+        "title": "Metamask connection",
+        "detail": "",
+        "image": ""
+      }
+    }
+  },
+  "theProject": {
+    "aboutTheProject": {
+      "title": "Stake accross",
+      "subtitle": "Unlocking the Strength of Native Tokens Across the Interchains",
+      "context": {
+        "title": "",
+        "description": "Description",
+        "paragraphOne": "In the ever-expanding landscape of blockchain ecosystems, the dispersion of native tokens like Ether (ETH) across various chains presents both opportunities and challenges. While the utilization of tokens in diverse Layer 1 (L1) and Layer 2 (L2) solutions brings benefits, it also raises concerns about network security and decentralization. Moreover, the dispersion of native tokens across chains makes it difficult for users to generate yield and secure the chains they are participating in with their native token.",
+        "paragraphTwo": ""
+      },
+      "problem": {
+        "title": "Challenges Addressed",
+        "description": "Description",
+        "sectionOne": {
+          "title": "Decentralization Impact",
+          "paragraphOne": "The scattering of native tokens across multiple chains can potentially centralize staking activities, undermining the decentralization ethos of blockchain networks."
+        },
+        "sectionTwo": {
+          "title": "Governance Diversification",
+          "paragraphOne": "Concentration of tokens on specific chains may lead to governance centralization, hindering diverse perspectives in decision-making processes."
+        },
+        "sectionTree": {
+          "title": "Data Privacy and Security",
+          "paragraphOne": "Dispersion of tokens may expose users to data privacy and security risks, particularly on chains with varying security measures. Additionally, the lack of a standardized approach for securing transactions and data transfer across chains presents significant challenges."
+        },
+        "sectionFour": {
+          "title": "Yield Generation and Chain Security",
+          "paragraphOne": "With native tokens dispersed across chains, users face difficulties in generating yield and securing the chains they participate in. This poses a challenge to the stability and security of the interconnected blockchain ecosystem.  ."
+        }
+      },
+      "proposal": {
+        "title": "Protocol Solutions",
+        "description": "",
+        "sectionOne": {
+          "title": "Multi-Chain Governance Framework:",
+          "paragraphOne": "Our protocol advocates for a multi-chain governance framework, actively involving stakeholders from different networks to ensure diverse and inclusive decision-making processes."
+        },
+        "sectionTwo": {
+          "title": "Enhanced Data Privacy and Security:",
+          "paragraphOne": "Through a privacy-focused protocol, we prioritize secure and private transactions, mitigating risks associated with data exposure across multiple chains. Additionally, our protocol offers the safest mechanism to transfer data, tokens, or both across chains, ensuring the integrity and security of transactions.  "
+        },
+        "sectionTree": {
+          "title": "Cross-Chain Collaboration:",
+          "paragraphOne": "Our protocol facilitates innovative collaborations and value creation across different chains, maximizing opportunities for synergies and project scope expansion beyond conventional narratives. "
+        }
+      },
+      "benefits": {
+        "title": "Protocol Benefits",
+        "description": "",
+        "sectionOne": {
+          "title": "Participatory Staking Across Chains:",
+          "paragraphOne": " With our protocol, participants can stake native tokens across various chains (and their testnets), including Ethereum, Avalanche, Optimism, Arbitrum, BNB, Base, and Polygon, using CCIP to seamlessly move liquidity across chains."
+        },
+        "sectionTwo": {
+          "title": "Yield Maximization:",
+          "paragraphOne": "By leveraging our protocol, users can generate yield and maximize returns using their own customized strategies tailored to each supported chain's unique characteristics."
+        }
+      },
+      "summary": {
+        "title": "Summary",
+        "paragraphOne": "In summary, our protocol not only addresses the challenges posed by dispersed native tokens but also unlocks the full potential of cross-chain collaboration, governance diversification, data privacy enhancement, and yield generation. By empowering users to stake across chains securely and optimize their returns, we pave the way for a more resilient, decentralized, and secure blockchain ecosystem."
+      }
+    },
+    "aboutTheTeam": {
+      "title": "About the team",
+      "description": "",
+      "members": [
+        {
+          "pictureOrAvatar": "TheProject/teamMembers/matias.png",
+          "name": "Matias",
+          "degree": "",
+          "role": "Project Manager",
+          "linkedin": "https://www.linkedin.com/in/mat%C3%ADas-guagliardo-b496a2122/"
+        },
+        {
+          "pictureOrAvatar": "TheProject/teamMembers/luis.png",
+          "name": "Luis",
+          "degree": "",
+          "role": "Software engineer",
+          "linkedin": "https://www.linkedin.com/in/luisvidela/"
+        },
+        {
+          "pictureOrAvatar": "TheProject/teamMembers/ivan.png",
+          "name": "Gustavo",
+          "degree": "",
+          "role": "Business manager",
+          "linkedin": "werwerwerwe"
+        },
+        {
+          "pictureOrAvatar": "TheProject/teamMembers/eli.png",
+          "name": "Elizabeth",
+          "degree": "Computer science",
+          "role": "Software engineer",
+          "linkedin": "https://www.linkedin.com/in/efigueroa-4022765b/"
+        }
+      ]
+    }
+  },
+  "legal": {
+    "title": "Aviso legal",
+    "subtitle": "Información básica sobre protección de datos personales:",
+    "liable": {
+      "title": "Responsable:",
+      "content": ""
+    },
+    "points": [
+      {
+        "title": "Finalidad:",
+        "content": "",
+        "moreInfo": "(+ info)"
+      },
+      {
+        "title": "Legitimación:",
+        "content": "",
+        "moreInfo": "(+ info)"
+      },
+      {
+        "title": "Destinatarios:",
+        "content": "",
+        "moreInfo": "(+ info)"
+      },
+      {
+        "title": "Derechos:",
+        "content": "",
+        "moreInfo": "(+ info)"
+      },
+      {
+        "title": "Transferencias internacionales:",
+        "content": "",
+        "moreInfo": "(+ info)"
+      },
+      {
+        "title": "Información adicional:",
+        "content": "",
+        "moreInfo": "(+ info)"
+      }
+    ],
+    "check1": "Acepto que he leído la",
+    "Referral": "política de privacidad",
+    "check2": "y acepto el tratamiento de mis datos personales.",
+    "btnLegal": "texto boton"
+  },
+  "whitePaper": {},
+  "profile": {
+    "notify": {
+      "title": "",
+      "subtitle": ""
+    },
+    "errors": {
+      "id": {
+        "title": "Error de identificación",
+        "msg": "Hemos detectado un error en el inicio de sesión. Revisa que tienes instalado Metamask correctamente con la cuenta con la que te registraste.",
+        "btn": "Volver al identificarte"
+      },
+      "expired": {
+        "title": "Tu sesión ha caducado",
+        "msg": "Necesitas volver a identificarte para acceder a tu área personal",
+        "btn": "Volver al identificarte"
+      }
+    }
+  },
+  "privateKey": ""
+}

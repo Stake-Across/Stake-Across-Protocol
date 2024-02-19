@@ -1,0 +1,82 @@
+.TheProject {
+    margin:0 5%;
+
+
+    &_section_aboutTheTeam,&_section_aboutTheProject {
+        display: flex;
+        flex-direction: column;
+
+        //border: 1px solid  #9fa8da;
+        //background-color: white;
+        //box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+        //border-radius: 12px;
+        margin: 4% 3% 4%;
+        justify-content: center;
+        text-align: justify;
+
+        h1 {
+            font-weight: 600;
+            font-size: 100px;
+            color: #4893a7
+        }
+
+        h2 {
+            margin-top: 2%;
+            margin-bottom: 1%;
+            font-size: 50px;
+            color: #f2894e;
+            font-weight: 500;
+            font-style: italic;
+        }
+
+        h3 {
+            margin-top: 1%;
+            margin-bottom: 1%;
+            font-size: 40px;
+            font-weight: bolder;
+            font-style: italic;
+            color: #4893a7
+        }
+
+        h4 {
+            margin-top: 1%;
+            margin-bottom: 1%;
+            font-size: 35px;
+            color: #f2894e;
+            font-weight: 500;
+        }
+
+        h5 {
+            margin-top: 1%;
+            margin-bottom: 1%;
+            font-size: 30px;
+            font-weight: bolder;
+        
+            color: #4893a7
+        }
+
+        h6 {
+            margin-top: 0%;
+            margin-bottom: 1%;
+            font-size: 20px;
+            color: #f2894e;
+            font-style: italic;
+            font-weight:bold;
+        }
+
+        p {
+ 
+            margin-bottom: 1%;
+        }
+
+    }
+    &_section_aboutTheTeam {
+
+        &_members {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            text-align: justify;
+        }
+    }
+}
