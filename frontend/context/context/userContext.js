@@ -16,6 +16,7 @@ export const UserDataProvider = ({ children }) => {
   const [popUpInfo, setPopUpInfo]= useState({title:'',detail:'',image:''})
   const [showBanner, setShowBanner]= useState(false)
   const [missing, setMissing]= useState(false)
+  const [showSpinner, setShowSpinner]= useState(true);
   const [page, setPage] = useState(0);
   const [referral, setReferral] = useState(0);
   const [stakeList, setStakeList]=useState([]);
@@ -50,7 +51,10 @@ export const UserDataProvider = ({ children }) => {
     setShowPopUp,
     popUpInfo, 
     setPopUpInfo,
-    stakeList, setStakeList
+    stakeList, 
+    setStakeList,
+    showSpinner,
+    setShowSpinner
   };
 
   return (

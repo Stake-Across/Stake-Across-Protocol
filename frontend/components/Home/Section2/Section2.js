@@ -17,6 +17,8 @@ export default function Section2() {
   const currentNetworks = metamask.availableNetworks();
   const currentNetworkInformation = currentNetworks.find((n) => n.name === currentNetwork);
   const {stakeList, setStakeList} = useUserData();
+  const {showSpinner, setShowSpinner}=useUserData();
+
   const handleStakeToShow = async () => {
     let network = currentNetwork;
     if (showStake) {
@@ -33,22 +35,15 @@ export default function Section2() {
       for (let i = 0; i < userData.length-1; i++) {
         for (let j = 0; j < currentBalance.length-1; j++) {
           if ( userData[i].tokenSymbol === currentBalance[j].tokenSymbol &&
-            userData[i].tokenBalance === currentBalance[j].tokenBalance) {
-              console.log(currentBalance[j].tokenSymbol)
+            userData[i].tokenBalance === currentBalance[j].tokenBalance) {         
               currentBalance.splice(j, 1);
           }
 
         }
-      }
-      console.log(currentBalance)
+      }  
         setUserData([...userData, ... currentBalance])
-      
-
-      
+ 
     }
-
-
-   
 
   }
 
@@ -57,9 +52,11 @@ export default function Section2() {
   }
   const understaking = async (e) => {
     let amount = stakeList[e.target.id][e.target.value];
+    setShowSpinner(true)
     await metamask.doRedeem(amount).then(result => {
       setPopUpInfo({ title: result.title, detail: result.detail, image: '' })
       setShowPopUp(true);
+      setShowSpinner(false)
     })
     setStakeList(await metamask.previewRedeem())
   }
@@ -72,16 +69,16 @@ export default function Section2() {
     }
     let userInfo = userData.find((user) => user.networkName === browserCurrentNetwork)
     if (userInfo.tokenBalance >= tokensToStake) {
+      setShowSpinner(true)
       await metamask.sendTokens(userInfo.publicKey, tokensToStake, browserCurrentNetwork).then(result => {
         setPopUpInfo({ title: result.title, detail: result.detail, image: '' })
         setShowPopUp(true);
+        setShowSpinner(false)
       })
-
     } else {
-
       setPopUpInfo({ title: content.popUp.balance.failed.title, detail: content.popUp.balance.failed.detail, image: '' })
-      setShowPopUp(true);
-
+      setShowPopUp(true)
+      setShowSpinner(false)
     }
   }
 
@@ -89,7 +86,8 @@ export default function Section2() {
 
   useEffect( () => {
    handleStakeToShow();
-  }, [setShowStake, setStakeList, setShowPopUp, setUserData, setCurrentNetwork]);
+   setShowSpinner(false)
+  }, [ setShowSpinner,setShowStake, setStakeList, setShowPopUp, setUserData, setCurrentNetwork]);
 
   return (
     <div className={styles.Section2}>

@@ -37,7 +37,7 @@ export default function FooterMini() {
                 Contact Us
               </Typography>
               <Typography variant="body2" color="white">
-                Email: info@example.com
+                Email: stakeacrossprotocol@gmail.com
               </Typography>
             </Grid>
             <Grid item xs={12} sm={4}>

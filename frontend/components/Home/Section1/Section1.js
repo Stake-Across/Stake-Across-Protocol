@@ -17,13 +17,14 @@ export default function Section1() {
   const { showSection, setshowSection } = useUserData();
   const {showPopUp, setShowPopUp } = useUserData();
   const {popUpInfo, setPopUpInfo} = useUserData();
+  const {showSpinner, setShowSpinner}=useUserData();
 
   const goToAccountSection = () => {
     setshowSection(3)
   }
   async function signIn() {
+    setShowSpinner(true)
     let browserCurrentNetwork = await metamask.validateNetwork(currentNetwork);
-    console.log(browserCurrentNetwork)
       if (browserCurrentNetwork !== currentNetwork) {
         await metamask.doWalletSwitch(currentNetwork)
      
@@ -45,8 +46,8 @@ export default function Section1() {
     setStakeList(...stakeList, await metamask.previewRedeem())
   }
   useEffect(() => {
-
-  }, [setshowSection, setCurrentNetwork,setShowPopUp]);
+    setShowSpinner(false)
+  }, [setshowSection, setCurrentNetwork,setShowPopUp,setShowSpinner]);
   return (
     <div className={styles.Section1}>
       < div className={styles.Section1_left}>

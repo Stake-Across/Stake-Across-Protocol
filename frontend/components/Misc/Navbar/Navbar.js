@@ -24,6 +24,7 @@ export default function Navbar({ }) {
   const url = router.pathname;
   const { userData, setUserData } = useUserData();
   const scrollToElement = () => reference.current.scrollIntoView();
+  const {showSpinner, setShowSpinner}=useUserData();
 
 
   async function signIn(desiredNetwork='') {
@@ -60,7 +61,7 @@ export default function Navbar({ }) {
     if (userData.length === 0) {
       await signIn('ethereum');
     }
-
+    setShowSpinner(true)
     setshowSection(codeSection)
   }
 
@@ -72,7 +73,7 @@ export default function Navbar({ }) {
   useEffect(() => {
 
 
-  }, [setshowSection, setShowPopUp, setShowNetworkPopUp, setUserData]);
+  }, [   setShowSpinner,setshowSection, setShowPopUp, setShowNetworkPopUp, setUserData]);
   return (
     <>
 

@@ -9,6 +9,8 @@ import Section4 from "./Section4/Section4"
 import NetworkPopUp from "./NetworksPopup/NetworkPopUp";
 import PopUp from "../Misc/PopUp/PopUp";
 import Navbar from "../Misc/Navbar/Navbar";
+import Spinner from "../Misc/Spinner/Spinner";
+import Box from '@mui/material/Box';
 import content from "../../translate/es.json";
 import styles from "./Home.module.scss";
 import { useUserData } from "../../context/hooks/useUserData";
@@ -19,15 +21,17 @@ export default function Home({ children }) {
   const { showPopUp, setShowPopUp } = useUserData();
   const {popUpInfo, setPopUpInfo} = useUserData();
   const { showSection, setshowSection } = useUserData();
+  const {showSpinner, setShowSpinner}=useUserData();
 
   useEffect(() => {
-
-  }, [setshowSection, setShowNetworkPopUp]);
+    setShowSpinner(false)
+  }, [setshowSection, setShowNetworkPopUp,setShowSpinner]);
 
   return (
     <>
       <div className={styles.Home}>
         <Navbar  />
+        {showSpinner?<Box > <Spinner /> </Box>:<></>}
         {showNetworkPopUp ? <NetworkPopUp /> : ''}
         {showPopUp ? <PopUp title={popUpInfo.title} text={popUpInfo.detail}/> :''}
         <div className={styles.Home_section1}>

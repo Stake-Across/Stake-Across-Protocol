@@ -62,8 +62,8 @@ export default function TheProject() {
       <div className={styles.TheProject_section_aboutTheTeam}>
         <h2>{content.theProject.aboutTheTeam.title} </h2>
         <div className={styles.TheProject_section_aboutTheTeam_members}>
-          {content.theProject.aboutTheTeam.members.map((member) => (
-            <TeamCard member={member} />
+          {content.theProject.aboutTheTeam.members.map((member, index) => (
+            <TeamCard key={index} id={index} member={member} />
           ))}
         </div>
       </div>

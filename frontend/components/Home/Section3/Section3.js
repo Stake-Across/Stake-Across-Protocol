@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import TreeDModel from '../../Misc/3DModels/3Dmodel'
 import styles from "./Section3.module.scss";
 import content from "../../../translate/en.json";
@@ -9,6 +9,13 @@ import { useUserData } from "../../../context/hooks/useUserData";
 
 export default function Section3() {
     const { userData, setUserData } = useUserData();
+    const {showSpinner, setShowSpinner}=useUserData();
+
+    useEffect( () => {
+       
+        setShowSpinner(false)
+       }, [ setShowSpinner]);
+     
 
     return (
         <div className={styles.Section3}>
