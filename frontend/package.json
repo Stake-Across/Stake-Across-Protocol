@@ -1,11 +1,13 @@
 {
-  "name": "frontend",
-  "homepage": "https://stakeacrossprotocol.github.io/starter-project/",
+  "name": "stake-across-protocol",
+  "homepage": "https://stakeacrossprotocol.github.io/stake-across-protocol/",
   "version": "0.0.1",
   "private": true,
   "scripts": {
     "dev": "nodemon node server.js",
     "build": "next build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "node server.js",
     "styles": "next dev"
   },
