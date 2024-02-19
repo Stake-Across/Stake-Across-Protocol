@@ -9,7 +9,7 @@ import secretInformation from '../store/secretInformation';
 
 //to move
 const data = JSON.parse(JSON.stringify(networks));
-const privateKey = 'a3ab8fdf6b9c41599d784801ebcd090a';
+const infuraPrivateKey = process.env.INFURA_PRIVATE_KEY ;
 const GAS_LIMIT = 600000;
 const contractSenderJSONABI = JSON.parse(JSON.stringify(sender));
 const contractReceiverJSONABI = JSON.parse(JSON.stringify(receiver));
@@ -114,7 +114,7 @@ export const metamask = {
     let currentNetworkBalance = await web3.eth.getBalance(accountAddress);
     currentNetworkBalance = web3.utils.fromWei(currentNetworkBalance, 'ether');
     balance.push({ networkName: networkName, publicKey: accountAddress, tokenSymbol: data[networkName]['tokenSymbol'], tokenBalance: currentNetworkBalance });
-    const infuraProvider = new JsonRpcProvider(`${data[networkName]['rpcHttpUrl']}${privateKey}`);
+    const infuraProvider = new JsonRpcProvider(`${data[networkName]['rpcHttpUrl']}${infuraPrivateKey}`);
     for (let i = 0; i < data[networkName].feeTokens.length; i++) {
       const currentTokenContract = new ethers.Contract(data[networkName].feeTokens[i].address
         , ['function balanceOf(address) view returns (uint)'], infuraProvider);
